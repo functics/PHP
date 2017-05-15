@@ -1,0 +1,10 @@
+@charset "UTF-8";
+#member #member_main input{
+    width: 70px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+#member #member_main dd.button{
+    text-align: center;
+}

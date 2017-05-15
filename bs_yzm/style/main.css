@@ -1,0 +1,52 @@
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	width: auto;
+	height: auto;
+	background-color: #111514;
+	text-align: center;
+	
+}
+
+div#main {
+	background-color: orange;
+	width: 400px;
+	height: 165px;
+	margin: auto;
+	margin-top: 200px;
+}
+
+div#main #table {
+	margin: 0 auto;
+}
+
+div#main #table .cap span {
+	font-size: 35px;
+}
+
+div#main #table td {
+	line-height: 38px;
+	font-size: 30px;
+	text-align: center;
+}
+
+div#main #table td #code {
+	width: 60px;
+	height: 36px;
+	font-size: 25px;
+}
+
+div#main #submit {
+	font-size: 15px;
+	font-weight: bold;
+	width: 75px;
+    height: 25px;
+    border: 1px solid #333;
+    background: #fff;
+    cursor: pointer;
+    margin: 5px auto;
+}

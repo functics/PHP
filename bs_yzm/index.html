@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>验证码的识别</title>
+	<link rel="stylesheet" href="style/main.css" />
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div id="main">
+		<table id="table" border="1">
+			<caption class="cap"><span>验证码的识别</span></caption>
+			<tr>
+				<td><span class="ele">验证码为 ：</span></td><td><img id="org_img" name="org_img"  src="show_captcha.php" alt="image/is_png.png"></td>
+			</tr>
+			<tr>
+				<td><span class="ele">识别的验证码 ：</span></td><td><input id="code" type="text" name="identify_code" title="识别的验证码"></td>
+			</tr>
+		</table>
+        <button id="submit" name="submit" title="验证按钮">验证</button>
+	</div>
+</body>
+
+</html>

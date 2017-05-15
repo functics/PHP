@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+    <taglib>
+        <name>webname</name>
+        <value>自定义模版主页</value>
+    </taglib>
+
+    <taglib>
+        <name>pagesize</name>
+        <value>10</value>
+    </taglib>
+
+</root>
