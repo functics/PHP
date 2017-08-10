@@ -15,6 +15,7 @@
 // 4   (0 1 0 0)
 //        ?   ?
 
+
 // The above arrows point to positions where the corresponding bits are different.
 /**
  *获取汉明距离
@@ -23,7 +24,7 @@ function hammingDistance($x, $y)
 {
 	$container = $x ^ $y;
 	$container = toBinary($container);
-	$distance = "";
+	$distance = 0;
 	for ($i=0; $i < strlen($container); $i++) { 
 		if ($container[$i] == 1) {
 			$distance += 1;
