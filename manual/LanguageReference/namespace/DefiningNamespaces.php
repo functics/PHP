@@ -25,3 +25,20 @@ function connect(){}
 // <html>
 // <?php
 // namespace MyProject; // fatal error - namespace must be the first statement in the script
+
+
+/***********************************************************************************/
+// NOTE 1: 
+
+//即使第一句话就是  namespace NS; 依旧报错，可能是UTF-8的BOM格式    尝试转换为无BOM格式
+
+// NOTE 2:
+namespace NS;
+
+define(__NAMESPACE__.'\foo', '111');
+define('foo', '222');
+echo __NAMESPACE__.PHP_EOL;	//NS
+echo foo.PHP_EOL;			//111
+echo \foo.PHP_EOL;			//222
+echo \NS\foo.PHP_EOL;		//111
+echo NS\foo; 				//Fatal error: Undefined constant 'NS\NS\foo'
