@@ -3,6 +3,7 @@
 /***************************************************************************/
 // Example #1 Declaring a single namespace
 
+//不区分大小写
 
 // Although any valid PHP code can be contained within a namespace, only the following types of code are affected by namespaces: classes (including abstracts and traits), interfaces, functions and constants.
 
