@@ -55,7 +55,6 @@ class TokenBucket
                     'lastRefillTime' => $this->timestamp
                 );
                 $this->setTokenRemaining($bucket);
-                print_r($this->memcache->get($this->key));
                 return true;
             }
             //如果当前的Token剩余量为0，则更新上次补充Token的时间，并放入桶内，返回false，程序退出
@@ -74,7 +73,7 @@ class TokenBucket
             $token = min(floor($this->maxBurstInterval / $this->intervalPerToken), $this->capacity);
             //放入桶内
             $bucket =array(
-                'tokenRemaining' => $token,
+                'tokenRemaining' => $token-1,
                 'lastRefillTime' => $this->timestamp
             );
             $this->setTokenRemaining($bucket);
@@ -123,22 +122,14 @@ class TokenBucket
     }
 }
 
-$test = new TokenBucket(10, 10);
+$test = new TokenBucket(10, 30);
 $test->setKey('test');
 $test->setExpire(0);
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
 
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
-echo $test->requestToken()."#".PHP_EOL;
+echo $test->requestToken();
+
+$test1 = new TokenBucket(10, 10);
+$test1->setKey('test1');
+$test1->setExpire(0);
+
+echo $test1->requestToken();
