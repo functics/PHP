@@ -2,7 +2,7 @@
 
 // 由Composer生成的autoload_real.php
 
-class ComposerAutoloaderInit
+class ComposerAutoloaderInit926d1c2f0ed1623f34619099dd63b982
 {
     private static $loader;
 
@@ -21,16 +21,16 @@ class ComposerAutoloaderInit
             return self::$loader;
         }
 
-        spl_autoload_register(array('ComposerAutoloaderInit', 'loadClassLoader'), true, true);
+        spl_autoload_register(array('ComposerAutoloaderInit926d1c2f0ed1623f34619099dd63b982', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
-        spl_autoload_unregister(array('ComposerAutoLoaderInit', 'loadClassLoader'));
+        spl_autoload_unregister(array('ComposerAutoloaderInit926d1c2f0ed1623f34619099dd63b982', 'loadClassLoader'));
 
         $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());
         if ($useStaticLoader)
         {
             require_once __DIR__ . '/autoload_static.php';
 
-            call_user_func(\Composer\Autoload\ComposerStaticInit::getInitializer($loader));
+            call_user_func(\Composer\Autoload\ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::getInitializer($loader));
         } else {
             $map = require __DIR__ . '/autoload_namespaces.php';
             foreach ($map as $namespace => $path)
@@ -55,14 +55,14 @@ class ComposerAutoloaderInit
 
         if ($useStaticLoader)
         {
-            $includeFiles = Composer\Autoload\ComposerStaticInit::$files;
+            $includeFiles = Composer\Autoload\ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$files;
         }else{
             $includeFiles = require __DIR__ . '/autoload_files.php';
         }
 
         foreach ($includeFiles as $fileIdentifier => $file)
         {
-            composerRequire($fileIdentifier, $file);
+            composerRequire926d1c2f0ed1623f34619099dd63b982($fileIdentifier, $file);
         }
 
         return $loader;
@@ -70,7 +70,7 @@ class ComposerAutoloaderInit
 }
 
 
-function composerRequire ($fileIdentifier, $file)
+function composerRequire926d1c2f0ed1623f34619099dd63b982 ($fileIdentifier, $file)
 {
     if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier]))
     {
