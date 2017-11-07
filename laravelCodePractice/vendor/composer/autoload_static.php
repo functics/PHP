@@ -119,7 +119,8 @@ class ComposerStaticInit926d1c2f0ed1623f34619099dd63b982
         ),
     );
 
-    public static $prefixDirsPsr4 = array (
+    public static $prefixDirsPsr4 = array
+    (
         'phpDocumentor\\Reflection\\' => array
         (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -313,7 +314,8 @@ class ComposerStaticInit926d1c2f0ed1623f34619099dd63b982
         ),
     );
 
-    public static $prefixesPsr0 = array (
+    public static $prefixesPsr0 = array
+    (
         'P' => array
         (
             'Prophecy\\' => array
@@ -357,7 +359,8 @@ class ComposerStaticInit926d1c2f0ed1623f34619099dd63b982
         ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array
+    (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -3628,12 +3631,17 @@ class ComposerStaticInit926d1c2f0ed1623f34619099dd63b982
 
     public static function getInitializer(ClassLoader $loader)
     {
-        return \Closure::bind(function () use ($loader)
-        {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4    = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixDirsPsr4;
-            $loader->prefixesPsr0      = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixesPsr0;
-            $loader->classMap          = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$classMap;
-        }, null, ClassLoader::class);
+        return \Closure::bind
+        (
+            function () use ($loader)
+            {
+                $loader->prefixLengthsPsr4 = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixLengthsPsr4;
+                $loader->prefixDirsPsr4    = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixDirsPsr4;
+                $loader->prefixesPsr0      = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$prefixesPsr0;
+                $loader->classMap          = ComposerStaticInit926d1c2f0ed1623f34619099dd63b982::$classMap;
+            },
+            null,
+            ClassLoader::class
+        );
     }
 }

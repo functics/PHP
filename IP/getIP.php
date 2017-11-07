@@ -54,4 +54,4 @@ function getIP()
     return $ip;
 }
 
-echo getip();
+echo getIP();

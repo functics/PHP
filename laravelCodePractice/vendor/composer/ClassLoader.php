@@ -49,12 +49,14 @@ class ClassLoader
     {
         if (!empty($this->prefixesPsr0))
         {
+            // 如果不是空的将 $this->prefixesPsr0 数组合并
             return call_user_func_array('array_merge', $this->prefixesPsr0);
         }
-
+        // 为空则返回空数组
         return array();
     }
 
+    // 获取该类的属性
     public function getPrefixesPsr4()
     {
         return $this->prefixDirsPsr4;
@@ -85,8 +87,10 @@ class ClassLoader
     {
         if ($this->classMap)
         {
+            // 存在的话 合并
             $this->classMap = array_merge($this->classMap, $classMap);
         } else {
+            // null的话赋值给属性
             $this->classMap = $classMap;
         }
     }
@@ -100,6 +104,7 @@ class ClassLoader
      */
     public function add($prefix, $paths, $prepend = false)
     {
+        // 如果$prefix为空走下判断
         if (!$prefix)
         {
             if ($prepend)
@@ -118,11 +123,11 @@ class ClassLoader
             return;
         }
 
+        // 不为空的话
         $first = $prefix[0];
         if (!isset($this->prefixesPsr0[$first][$prefix]))
         {
             $this->prefixesPsr0[$first][$prefix] = (array) $paths;
-
             return;
         }
         if ($prepend)

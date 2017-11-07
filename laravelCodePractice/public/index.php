@@ -24,3 +24,29 @@ define('LARAVEL_START', microtime(true));  //当前 Unix 时间戳和微秒数 (
 */
 
 require __DIR__.'/../vendor/autoload.php';  //  __DIR__ 当前目录  D:\phpStudy\WWW\PHP\laravelCodePractice
+
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights. 我们需要照亮PHP开发，所以让我们打开灯光。
+| This bootstraps the framework and gets it ready for use, then it     这引导框架，并准备好使用，然后它将加载这个应用程序
+| will load up this application so that we can run it and send         以便我们可以运行它并发送回应给浏览器并使用户满意。
+| the responses back to the browser and delight our users.
+|
+*/
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application  运行应用
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel（核心）, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
