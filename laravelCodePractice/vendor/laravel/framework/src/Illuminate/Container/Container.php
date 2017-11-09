@@ -4,7 +4,7 @@ namespace Illuminate\Container;
 
 use Closure;
 use ArrayAccess;
-//use LogicException;
+use LogicException;
 //use ReflectionClass;
 //use ReflectionParameter;
 //use Illuminate\Contracts\Container\BindingResolutionException;
@@ -56,6 +56,18 @@ class Container implements ArrayAccess, ContainerContract
     }
 
     /**
+     * Resolve the given type from the container.
+     *
+     * @param  string  $abstract
+     * @param  array  $parameters
+     * @return mixed
+     */
+    protected function resolve($abstract, $parameters = [])
+    {
+        $abstract = $this->getAlias($abstract);
+    }
+
+    /**
      * Determine if a given string is an alias.
      *
      * @param  string  $name
@@ -65,6 +77,44 @@ class Container implements ArrayAccess, ContainerContract
     {
         return isset($this->aliases[$name]);
     }
+
+    /**
+     * Fire the "rebound" callbacks for the given abstract type.
+     *
+     * @param  string  $abstract
+     * @return void
+     */
+    public function rebound($abstract)
+    {
+        $instance = $this->make($abstract);
+    }
+
+    /**
+     * Get the alias for an abstract if available.
+     *
+     * @param  string  $abstract
+     * @return string
+     *
+     * @throws \LogicException
+     */
+     public function getAlias($abstract)
+     {
+         echo 1111;
+//         var_dump( isset($this->aliases[$abstract]) );
+//         die();
+
+         if (! isset($this->aliases[$abstract]))
+         {
+             return $abstract;
+         }
+
+         if ($this->aliases[$abstract] === $abstract)
+         {
+             throw new LogicException("[{$abstract}] is aliased to itself.");
+         }
+
+         return $this->getAlias($this->aliases[$abstract]);
+     }
 
     /**↑↑↑↑↑ 非继承 ↑↑↑↑↑**/
 
@@ -112,7 +162,6 @@ class Container implements ArrayAccess, ContainerContract
     public function instance($abstract, $instance)
     {
         $this->removeAbstractAlias($abstract);
-
         $isBound = $this->bound($abstract);
 
         unset($this->aliases[$abstract]);
@@ -122,10 +171,11 @@ class Container implements ArrayAccess, ContainerContract
         // can be updated with consuming classes that have gotten resolved here.
         $this->instances[$abstract] = $instance;
 
-        print_r($this->instances);
-        die();//2017-11-8
+//        print_r($this->instances);
+//        die();//2017-11-8
 
-        if ($isBound) {
+        if ($isBound)
+        {
             $this->rebound($abstract);
         }
 
@@ -134,7 +184,19 @@ class Container implements ArrayAccess, ContainerContract
 
     public function when(){}
     public function factory($abstract){}
-    public function make($abstract, array $parameters = []){}
+
+    /**
+     * Resolve the given type from the container.
+     *
+     * @param  string  $abstract
+     * @param  array  $parameters
+     * @return mixed
+     */
+    public function make($abstract, array $parameters = [])
+    {
+        return $this->resolve($abstract, $parameters);
+    }
+
     public function call($callback, array $parameters = [], $defaultMethod = null){}
     public function resolved($abstract){}
     public function resolving($abstract, Closure $callback = null){}
