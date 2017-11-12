@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>serverMoniter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+
+        #main {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: wrap row;
+            justify-content: space-around;
+        }
+
+        #main > div{
+            margin-top: 50px;
+        }
+
+        #main div {
+            width: 45%;
+            height: 200px;
+            background-color: red;
+        }
+
+        #main div div {
+            width: 100%;
+            background-color: green;
+        }
+
+        button {
+            display: block;
+            cursor: pointer;
+            border: black 1px solid;
+            width: 200px;
+            height: 30px;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        $(function(){
+
+            // uptime
+            var upTimeBtn = $('#upTimeBtn');
+            upTimeBtn.click( function () {
+                $.ajax({
+                    type: 'get',
+                    url : "http://121.199.38.85/serverMonitor/index.php",
+                    dataType: "jsonp",
+                    jsonp: 'jsonCallback',
+                    data: {
+                        access : "hzx",
+                        command: "uptime"
+                    },
+                    success: function (cb) {
+                        console.log(cb);
+                        $('#upTime').find('.display').html(cb.output[0]);
+                        // 在这里判断是否需要发送广播
+                    },
+                    error: function () {
+                        console.log("fail");
+                    }
+                });
+            });
+
+
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="main">
+    <div id="upTime">
+        <button id="upTimeBtn">查询（uptime）</button>
+        <div class="display"></div>
+    </div>
+
+    <div id="showProcesslist">
+        <button id="showProcesslistBtn">查询（show processlist）</button>
+        <div class="display"></div>
+    </div>
+
+    <div id="ioStat">
+        <button id="ioStatBtn">查询（iostat -d -k 2）</button>
+        <div class="display"></div>
+    </div>
+
+    <div id="apache">
+        <button id="apache">启动（service httpd start）</button>
+        <div class="display"></div>
+    </div>
+</div>
+
+</body>
+</html>
