@@ -2,6 +2,7 @@
 /**
  * 复制一个闭包，绑定指定的$this对象和类作用域。
  */
+
 class Animal
 {
     private static $cat = "cat";
