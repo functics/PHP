@@ -4,42 +4,32 @@
  * 报错信息拦截处理
  */
 
-set_error_handler("errorHandle");
+set_error_handler("errorHandle", E_ALL);
 
 function errorHandle($errNo, $errStr, $errFile, $errLine)
 {
-    switch ($errNo) {
-        case E_ERROR:
-            errMsg('E_ERROR', $errStr, $errFile, $errLine);
-            break;
-        case E_WARNING:
-            errMsg('E_WARNING', $errStr, $errFile, $errLine);
-            break;
-        case E_PARSE:
-            errMsg('E_PARSE', $errStr, $errFile, $errLine);
-            break;
-        case E_NOTICE:
-            errMsg('E_NOTICE', $errStr, $errFile, $errLine);
-            break;
-        case E_CORE_ERROR:
-            errMsg('E_CORE_ERROR', $errStr, $errFile, $errLine);
-            break;
-    }
+    $errConstants = array(
+        E_ERROR             => 'E_ERROR',// 不能获取
+        E_WARNING           => 'E_WARNING',
+        E_PARSE             => 'E_PARSE',// 不能获取
+        E_NOTICE            => 'E_NOTICE',
+        E_CORE_ERROR        => 'E_CORE_ERROR',// 不能获取
+        E_CORE_WARNING      => 'E_CORE_WARNING',// 不能获取
+        E_COMPILE_ERROR     => 'E_COMPILE_ERROR',// 不能获取
+        E_COMPILE_WARNING   => 'E_COMPILE_WARNING',// 不能获取
+        E_USER_ERROR        => 'E_USER_ERROR',
+        E_USER_WARNING      => 'E_USER_WARNING',
+        E_USER_NOTICE       => 'E_USER_NOTICE',
+        E_STRICT            => 'E_STRICT',
+        E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
+        E_DEPRECATED        => 'E_DEPRECATED',
+        E_USER_DEPRECATED   => 'E_USER_DEPRECATED'
+    );
 
-    print(E_ALL);
+    $res = "错误级别为:" . $errConstants[$errNo] . "。" . BR .
+           "错误信息为:" . $errStr               . "。" . BR .
+           "报错文件名:" . $errFile              . "。" . BR .
+           "报错行数为:" . $errLine              . "。" . BR ;
 
-    if ($errNo === E_ALL || $errNo === E_STRICT) {
-
-    }
-    return true;
-}
-
-function errMsg($msg, $errStr, $errFile, $errLine)
-{
-    $res = <<< EOF
-"错误级别为" ： $msg;
-"错误信息为" ： $errStr;
-"报错文件名" ： $errFile;
-"报错行数为" ： $errLine;
-EOF;
+    return print_r($res);
 }
