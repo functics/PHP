@@ -1,52 +1,37 @@
 <?php
 
-/**
- * Laravel - Web艺术家的PHP框架
- *
- * @package  Laravel
- *
- * @For what :  just for practice
- *
- */
+use Illuminate\Database\Capsule\Manager;
+use Illuminate\Support\Fluent;
 
-define('LARAVEL_START', microtime(true));  //当前 Unix 时间戳和微秒数 (1509610724.3548)
+// 调用自动加载文件，添加自动加载函数
+require __DIR__ . '/../vendor/autoload.php';
 
-/*
-|--------------------------------------------------------------------------
-| 注册自动加载
-|--------------------------------------------------------------------------
-|
-| Composer为我们的应用程序提供了一个方便的，自动生成的类加载器。
-| 我们只需要利用它!
-| 我们只需要在这里编写脚本，这样我们就不用担心稍后手动加载任何类。
-| 放松感觉很好!
-|
-*/
+// 实例化服务容器，注册事件、路由服务提供者
+$app = new Illuminate\Container\Container; //服务容器 用于 服务注册和解析
 
-require __DIR__.'/../vendor/autoload.php';  //  __DIR__ 当前目录  D:\phpStudy\WWW\PHP\laravelCodePractice
+Illuminate\Container\Container::setInstance($app);
+with(new Illuminate\Events\EventServiceProvider($app))->register();
+with(new Illuminate\Routing\RoutingServiceProvider($app))->register();
 
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights. 我们需要照亮PHP开发，所以让我们打开灯光。
-| This bootstraps the framework and gets it ready for use, then it     这引导框架，并准备好使用，然后它将加载这个应用程序
-| will load up this application so that we can run it and send         以便我们可以运行它并发送回应给浏览器并使用户满意。
-| the responses back to the browser and delight our users.
-|
-*/
+// 启动 Eloquent ORM模块并进行相关配置
+$manage = new Manager();
+$manage->addConnection(require '../config/database.php');
+$manage->bootEloquent();
 
-$app = require_once __DIR__ . '/../bootstrap/app.php';
+$app->instance('config', new Fluent);
+$app['config']['view.compiled'] = "D:\\phpStudy\\WWW\\laravelCodePractice\\storage\\framework\\views\\";
+$app['config']['view.paths'] = ["D\\phpStudy\\WWW\\laravelCodePractice\\resources\\views\\"];
+with(new Illuminate\View\ViewServiceProvider($app))->register();
+with(new Illuminate\Filesystem\FilesystemServiceProvider($app))->register();
 
-/*
-|--------------------------------------------------------------------------
-| Run The Application  运行应用
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request
-| through the kernel（核心）, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
-|
-*/
+// 加载路由
+require __DIR__ . '/../app/Http/routes.php';
+
+// 实例化请求并分发处理请求
+$request  = Illuminate\Http\Request::createFromGlobals();
+$response = $app['router']->dispatch($request);
+
+// 返回请求响应
+$response->send();
+
+//page: 33

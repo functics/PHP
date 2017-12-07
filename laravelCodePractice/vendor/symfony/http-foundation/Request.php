@@ -30,47 +30,49 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class Request
 {
-    const HEADER_FORWARDED           = 0b00001;                        // When using RFC 7239
-    const HEADER_X_FORWARDED_FOR     = 0b00010;
-    const HEADER_X_FORWARDED_HOST    = 0b00100;
-    const HEADER_X_FORWARDED_PROTO   = 0b01000;
-    const HEADER_X_FORWARDED_PORT    = 0b10000;
-    const HEADER_X_FORWARDED_ALL     = 0b11110;                        // All "X-Forwarded-*" headers
-    const HEADER_X_FORWARDED_AWS_ELB = 0b11010;                        // AWS ELB doesn't send X-Forwarded-Host
-    const HEADER_CLIENT_IP           = self::HEADER_X_FORWARDED_FOR;   // @deprecated since version 3.3, to be removed in 4.0
-    const HEADER_CLIENT_HOST         = self::HEADER_X_FORWARDED_HOST;  // @deprecated since version 3.3, to be removed in 4.0
-    const HEADER_CLIENT_PROTO        = self::HEADER_X_FORWARDED_PROTO; // @deprecated since version 3.3, to be removed in 4.0
-    const HEADER_CLIENT_PORT         = self::HEADER_X_FORWARDED_PORT;  // @deprecated since version 3.3, to be removed in 4.0
-    const METHOD_HEAD                = 'HEAD';
-    const METHOD_GET                 = 'GET';
-    const METHOD_POST                = 'POST';
-    const METHOD_PUT                 = 'PUT';
-    const METHOD_PATCH               = 'PATCH';
-    const METHOD_DELETE              = 'DELETE';
-    const METHOD_PURGE               = 'PURGE';
-    const METHOD_OPTIONS             = 'OPTIONS';
-    const METHOD_TRACE               = 'TRACE';
-    const METHOD_CONNECT             = 'CONNECT';
+    const HEADER_FORWARDED = 0b00001; // When using RFC 7239
+    const HEADER_X_FORWARDED_FOR = 0b00010;
+    const HEADER_X_FORWARDED_HOST = 0b00100;
+    const HEADER_X_FORWARDED_PROTO = 0b01000;
+    const HEADER_X_FORWARDED_PORT = 0b10000;
+    const HEADER_X_FORWARDED_ALL = 0b11110; // All "X-Forwarded-*" headers
+    const HEADER_X_FORWARDED_AWS_ELB = 0b11010; // AWS ELB doesn't send X-Forwarded-Host
 
-    protected $content;                                         // string
-    protected $languages;                                       // array
-    protected $charsets;                                        // array
-    protected $encodings;                                       // array
-    protected $acceptableContentTypes;                          // array
-    protected $pathInfo;                                        // string
-    protected $requestUri;                                      // string
-    protected $baseUrl;                                         // string
-    protected $basePath;                                        // string
-    protected $method;                                          // string
-    protected $session;                                         // \Symfony\Component\HttpFoundation\Session\SessionInterface
-    protected $locale;                                          // string
-    protected $defaultLocale                      = 'en';
-    protected static $formats;                                  // array
-    protected static $requestFactory;
-    protected static $trustedProxies              = array();
-    protected static $trustedHostPatterns         = array();
-    protected static $trustedHosts                = array();
-    protected static $httpMethodParameterOverride = false;
+    /** @deprecated since version 3.3, to be removed in 4.0 */
+    const HEADER_CLIENT_IP = self::HEADER_X_FORWARDED_FOR;
+    /** @deprecated since version 3.3, to be removed in 4.0 */
+    const HEADER_CLIENT_HOST = self::HEADER_X_FORWARDED_HOST;
+    /** @deprecated since version 3.3, to be removed in 4.0 */
+    const HEADER_CLIENT_PROTO = self::HEADER_X_FORWARDED_PROTO;
+    /** @deprecated since version 3.3, to be removed in 4.0 */
+    const HEADER_CLIENT_PORT = self::HEADER_X_FORWARDED_PORT;
+
+    const METHOD_HEAD = 'HEAD';
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+    const METHOD_PUT = 'PUT';
+    const METHOD_PATCH = 'PATCH';
+    const METHOD_DELETE = 'DELETE';
+    const METHOD_PURGE = 'PURGE';
+    const METHOD_OPTIONS = 'OPTIONS';
+    const METHOD_TRACE = 'TRACE';
+    const METHOD_CONNECT = 'CONNECT';
+
+    /**
+     * @var string[]
+     */
+    protected static $trustedProxies = array();
+
+    /**
+     * @var string[]
+     */
+    protected static $trustedHostPatterns = array();
+
+    /**
+     * @var string[]
+     */
+    protected static $trustedHosts = array();
+
     /**
      * Names for headers that can be trusted when
      * using trusted proxies.
@@ -82,42 +84,161 @@ class Request
      *
      * @deprecated since version 3.3, to be removed in 4.0
      */
-    protected static $trustedHeaders      = array
-    (
-        self::HEADER_FORWARDED    => 'FORWARDED',
-        self::HEADER_CLIENT_IP    => 'X_FORWARDED_FOR',
-        self::HEADER_CLIENT_HOST  => 'X_FORWARDED_HOST',
+    protected static $trustedHeaders = array(
+        self::HEADER_FORWARDED => 'FORWARDED',
+        self::HEADER_CLIENT_IP => 'X_FORWARDED_FOR',
+        self::HEADER_CLIENT_HOST => 'X_FORWARDED_HOST',
         self::HEADER_CLIENT_PROTO => 'X_FORWARDED_PROTO',
-        self::HEADER_CLIENT_PORT  => 'X_FORWARDED_PORT',
+        self::HEADER_CLIENT_PORT => 'X_FORWARDED_PORT',
     );
 
-    public $attributes;  // Custom parameters.
-    public $request;     // Request body parameters ($_POST).
-    public $query;       // Query string parameters ($_GET).
-    public $server;      // Server and execution environment parameters ($_SERVER).
-    public $files;       // Uploaded files ($_FILES).
-    public $cookies;     // Cookies ($_COOKIE).
-    public $headers;     // Headers (taken from the $_SERVER).
+    protected static $httpMethodParameterOverride = false;
 
-    private $isHostValid               = true;
-    private $isClientIpsValid          = true;
-    private $isForwardedValid          = true;
-    private static $trustedHeaderSet   = -1;
+    /**
+     * Custom parameters.
+     *
+     * @var \Symfony\Component\HttpFoundation\ParameterBag
+     */
+    public $attributes;
+
+    /**
+     * Request body parameters ($_POST).
+     *
+     * @var \Symfony\Component\HttpFoundation\ParameterBag
+     */
+    public $request;
+
+    /**
+     * Query string parameters ($_GET).
+     *
+     * @var \Symfony\Component\HttpFoundation\ParameterBag
+     */
+    public $query;
+
+    /**
+     * Server and execution environment parameters ($_SERVER).
+     *
+     * @var \Symfony\Component\HttpFoundation\ServerBag
+     */
+    public $server;
+
+    /**
+     * Uploaded files ($_FILES).
+     *
+     * @var \Symfony\Component\HttpFoundation\FileBag
+     */
+    public $files;
+
+    /**
+     * Cookies ($_COOKIE).
+     *
+     * @var \Symfony\Component\HttpFoundation\ParameterBag
+     */
+    public $cookies;
+
+    /**
+     * Headers (taken from the $_SERVER).
+     *
+     * @var \Symfony\Component\HttpFoundation\HeaderBag
+     */
+    public $headers;
+
+    /**
+     * @var string|resource
+     */
+    protected $content;
+
+    /**
+     * @var array
+     */
+    protected $languages;
+
+    /**
+     * @var array
+     */
+    protected $charsets;
+
+    /**
+     * @var array
+     */
+    protected $encodings;
+
+    /**
+     * @var array
+     */
+    protected $acceptableContentTypes;
+
+    /**
+     * @var string
+     */
+    protected $pathInfo;
+
+    /**
+     * @var string
+     */
+    protected $requestUri;
+
+    /**
+     * @var string
+     */
+    protected $baseUrl;
+
+    /**
+     * @var string
+     */
+    protected $basePath;
+
+    /**
+     * @var string
+     */
+    protected $method;
+
+    /**
+     * @var string
+     */
+    protected $format;
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\Session\SessionInterface
+     */
+    protected $session;
+
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
+     * @var string
+     */
+    protected $defaultLocale = 'en';
+
+    /**
+     * @var array
+     */
+    protected static $formats;
+
+    protected static $requestFactory;
+
+    private $isHostValid = true;
+    private $isForwardedValid = true;
+
+    private static $trustedHeaderSet = -1;
+
     /** @deprecated since version 3.3, to be removed in 4.0 */
-    private static $trustedHeaderNames = array
-    (
-        self::HEADER_FORWARDED    => 'FORWARDED',
-        self::HEADER_CLIENT_IP    => 'X_FORWARDED_FOR',
-        self::HEADER_CLIENT_HOST  => 'X_FORWARDED_HOST',
+    private static $trustedHeaderNames = array(
+        self::HEADER_FORWARDED => 'FORWARDED',
+        self::HEADER_CLIENT_IP => 'X_FORWARDED_FOR',
+        self::HEADER_CLIENT_HOST => 'X_FORWARDED_HOST',
         self::HEADER_CLIENT_PROTO => 'X_FORWARDED_PROTO',
-        self::HEADER_CLIENT_PORT  => 'X_FORWARDED_PORT',
+        self::HEADER_CLIENT_PORT => 'X_FORWARDED_PORT',
     );
-    private static $forwardedParams    = array
-    (
-        self::HEADER_X_FORWARDED_FOR   => 'for',
-        self::HEADER_X_FORWARDED_HOST  => 'host',
+
+    private static $forwardedParams = array(
+        self::HEADER_X_FORWARDED_FOR => 'for',
+        self::HEADER_X_FORWARDED_HOST => 'host',
         self::HEADER_X_FORWARDED_PROTO => 'proto',
-        self::HEADER_X_FORWARDED_PORT  => 'host',
+        self::HEADER_X_FORWARDED_PORT => 'host',
     );
 
     /**
@@ -278,7 +399,7 @@ class Request
                 if (!isset($server['CONTENT_TYPE'])) {
                     $server['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
                 }
-            // no break
+                // no break
             case 'PATCH':
                 $request = $parameters;
                 $query = array();
@@ -674,8 +795,8 @@ class Request
      *
      * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
      *
-     * @param string $key     the key
-     * @param mixed  $default the default value if the parameter key does not exist
+     * @param string $key     The key
+     * @param mixed  $default The default value if the parameter key does not exist
      *
      * @return mixed
      */
@@ -1073,7 +1194,7 @@ class Request
         // as the first segment of a relative-path reference, as it would be mistaken for a scheme name
         // (see http://tools.ietf.org/html/rfc3986#section-4.2).
         return !isset($path[0]) || '/' === $path[0]
-        || false !== ($colonPos = strpos($path, ':')) && ($colonPos < ($slashPos = strpos($path, '/')) || false === $slashPos)
+            || false !== ($colonPos = strpos($path, ':')) && ($colonPos < ($slashPos = strpos($path, '/')) || false === $slashPos)
             ? "./$path" : $path;
     }
 
@@ -1458,6 +1579,30 @@ class Request
     }
 
     /**
+     * Returns the protocol version.
+     *
+     * If the application is behind a proxy, the protocol version used in the
+     * requests between the client and the proxy and between the proxy and the
+     * server might be different. This returns the former (from the "Via" header)
+     * if the proxy is trusted (see "setTrustedProxies()"), otherwise it returns
+     * the latter (from the "SERVER_PROTOCOL" server parameter).
+     *
+     * @return string
+     */
+    public function getProtocolVersion()
+    {
+        if ($this->isFromTrustedProxy()) {
+            preg_match('~^(HTTP/)?([1-9]\.[0-9]) ~', $this->headers->get('Via'), $matches);
+
+            if ($matches) {
+                return 'HTTP/'.$matches[2];
+            }
+        }
+
+        return $this->server->get('SERVER_PROTOCOL');
+    }
+
+    /**
      * Returns the request body content.
      *
      * @param bool $asResource If true, a resource will be returned
@@ -1741,6 +1886,9 @@ class Request
 
         // Does the baseUrl have anything in common with the request_uri?
         $requestUri = $this->getRequestUri();
+        if ($requestUri !== '' && $requestUri[0] !== '/') {
+            $requestUri = '/'.$requestUri;
+        }
 
         if ($baseUrl && false !== $prefix = $this->getUrlencodedPrefix($requestUri, $baseUrl)) {
             // full $baseUrl matches
@@ -1780,12 +1928,12 @@ class Request
      */
     protected function prepareBasePath()
     {
-        $filename = basename($this->server->get('SCRIPT_FILENAME'));
         $baseUrl = $this->getBaseUrl();
         if (empty($baseUrl)) {
             return '';
         }
 
+        $filename = basename($this->server->get('SCRIPT_FILENAME'));
         if (basename($baseUrl) === $filename) {
             $basePath = dirname($baseUrl);
         } else {
@@ -1806,23 +1954,26 @@ class Request
      */
     protected function preparePathInfo()
     {
-        $baseUrl = $this->getBaseUrl();
-
         if (null === ($requestUri = $this->getRequestUri())) {
             return '/';
         }
 
         // Remove the query string from REQUEST_URI
-        if ($pos = strpos($requestUri, '?')) {
+        if (false !== $pos = strpos($requestUri, '?')) {
             $requestUri = substr($requestUri, 0, $pos);
+        }
+        if ($requestUri !== '' && $requestUri[0] !== '/') {
+            $requestUri = '/'.$requestUri;
+        }
+
+        if (null === ($baseUrl = $this->getBaseUrl())) {
+            return $requestUri;
         }
 
         $pathInfo = substr($requestUri, strlen($baseUrl));
-        if (null !== $baseUrl && (false === $pathInfo || '' === $pathInfo)) {
+        if (false === $pathInfo || '' === $pathInfo) {
             // If substr() returns false then PATH_INFO is set to an empty string
             return '/';
-        } elseif (null === $baseUrl) {
-            return $requestUri;
         }
 
         return (string) $pathInfo;
