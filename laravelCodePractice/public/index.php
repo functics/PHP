@@ -19,8 +19,8 @@ $manage->addConnection(require '../config/database.php');
 $manage->bootEloquent();
 
 $app->instance('config', new Fluent);
-$app['config']['view.compiled'] = "D:\\phpStudy\\WWW\\laravelCodePractice\\storage\\framework\\views\\";
-$app['config']['view.paths'] = ["D\\phpStudy\\WWW\\laravelCodePractice\\resources\\views\\"];
+$app['config']['view.compiled'] = "D:\\phpStudy\\WWW\\PHP\\laravelCodePractice\\storage\\framework\\views\\";
+$app['config']['view.paths'] = ["D:\\phpStudy\\WWW\\PHP\\laravelCodePractice\\resources\\views\\"];
 with(new Illuminate\View\ViewServiceProvider($app))->register();
 with(new Illuminate\Filesystem\FilesystemServiceProvider($app))->register();
 
