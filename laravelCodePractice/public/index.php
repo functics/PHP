@@ -1,5 +1,7 @@
 <?php
 
+$start_time = microtime();
+
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Support\Fluent;
 
@@ -35,3 +37,9 @@ $response = $app['router']->dispatch($request);
 $response->send();
 
 //page: 59
+
+$end_time = microtime();
+
+$total = $end_time - $start_time;
+
+echo $total;
