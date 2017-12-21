@@ -10,10 +10,11 @@
  * 定义目录文件路径
  * 定义项目根目录，项目是通过队列执行的，所以一定要使用跟队列相同的根目录
  */
-defined('COMMON_ROOT')  || define('COMMON_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-defined('DOCKING_PATH') || define('DOCKING_PATH', dirname(COMMON_ROOT) . DIRECTORY_SEPARATOR);
+defined('CONFIG_ROOT')  || define('CONFIG_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+defined('DOCKING_PATH') || define('DOCKING_PATH', dirname(CONFIG_ROOT) . DIRECTORY_SEPARATOR);
 defined('PUBLIC_ROOT')  || define('PUBLIC_ROOT', DOCKING_PATH . 'Public' . DIRECTORY_SEPARATOR);
-defined('LIBRARY_ROOT') || define('LIBRARY_ROOT', DOCKING_PATH . 'Library' . DIRECTORY_SEPARATOR);
+defined('LIBRARY_ROOT') || define('LIBRARY_ROOT', DOCKING_PATH . 'library' . DIRECTORY_SEPARATOR);
+defined('VENDOR_ROOT')  || define('VENDOR_ROOT', DOCKING_PATH . 'vendor' . DIRECTORY_SEPARATOR);
 
 // 日志目录
 defined('G_LOG_DIR') || define('G_LOG_DIR', '/data/apache_logs/docking/api2_logs/');
