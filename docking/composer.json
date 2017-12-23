@@ -4,6 +4,11 @@
   },
 
   "autoload" : {
+    "files" : [
+      "config/config.php",
+      "config/database.php",
+      "library/function.php"
+    ],
     "psr-4" : {
       "App\\" : "app/",
       "Library\\" : "library/"

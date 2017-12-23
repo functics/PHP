@@ -49,8 +49,8 @@
 namespace Library\Core;
 
 
-abstract class Docking_Logger {
-
+abstract class Docking_Logger
+{
     /**
      * @var int $logLevel 多个日记级别
      */
@@ -96,7 +96,8 @@ abstract class Docking_Logger {
      */
     const LOG_LEVEL_EMERGENCY = 128;
 
-    public function __construct($level) {
+    public function __construct($level)
+    {
         $this->logLevel = $level;
     }
 
@@ -122,9 +123,10 @@ abstract class Docking_Logger {
      * 应用调试级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
-    public function debug($msg, $data = NULL) {
+    public function debug($msg, $data = NULL)
+    {
         if (!$this->isAllowToLog(self::LOG_LEVEL_DEBUG)) {
             return;
         }
@@ -136,9 +138,10 @@ abstract class Docking_Logger {
      * 开发产品级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return void
      */
-    public function info($msg, $data = NULL) {
+    public function info($msg, $data = NULL)
+    {
         if (!$this->isAllowToLog(self::LOG_LEVEL_INFO)) {
             return;
         }
@@ -150,7 +153,7 @@ abstract class Docking_Logger {
      * 需要注意级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function notice($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_NOTICE)) {
@@ -164,7 +167,7 @@ abstract class Docking_Logger {
      * 警告级别日志
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function warning($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_WARNING)) {
@@ -178,7 +181,7 @@ abstract class Docking_Logger {
      * 系统错误级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function error($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_ERROR)) {
@@ -192,7 +195,7 @@ abstract class Docking_Logger {
      * 危险级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function critical($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_CRITICAL)) {
@@ -206,7 +209,7 @@ abstract class Docking_Logger {
      * 警惕级日记
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function alert($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_ALERT)) {
@@ -220,7 +223,7 @@ abstract class Docking_Logger {
      * 紧急情况
      * @param string $msg 日记关键描述
      * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @return NULL | void
      */
     public function emergency($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_EMERGENCY)) {

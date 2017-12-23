@@ -39,7 +39,7 @@ abstract class Database
      * @param boolean $pconnect Use persistent connections.
      * @param string $database Database name.
      */
-    function __construct($server, $username, $password='', $pconnect=false, $database='')
+    function __construct($server, $username, $password='', $pconnect = false, $database='')
     {
         $this->__server = $server;
         $this->__username = $username;

@@ -16,34 +16,36 @@ class Docking_Logger_SeasLog extends Docking_Logger {
     protected $fileDate;
     protected $logFile;
 
-    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s') {
-
+    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s')
+    {
         $this->logFolder  = $logFolder;
         $this->dateFormat = $dateFormat;
 
         parent::__construct($level);
     }
 
-    public function setLogger($logger){
+    public function setLogger($logger)
+    {
         if(is_array($logger)){
-            $logger = implode(DIRECTORY_SEPARATOR,$logger);
+            $logger = implode(DIRECTORY_SEPARATOR, $logger);
         }
         SeasLog::setLogger($logger);
     }
 
-    public function log($type, $msg, $data) {
-
+    public function log($type, $msg, $data)
+    {
         $msgArr = array();
         $msgArr[] = $msg;
         if ($data !== NULL) {
-            $msgArr[] = is_array($data) ? json_encode($data) : print_r($data,true);
+            $msgArr[] = is_array($data) ? json_encode($data) : print_r($data, true);
         }
         $content = implode('|', $msgArr);//seasLog写入的时候会自己加换行符所以这里就不加了 PHP_EOL
         $content = str_replace(PHP_EOL, '', $content);
-        SeasLog::log($type,$content,array(),'');
+        SeasLog::log($type,$content, array(),'');
     }
 
-    public function flushBuffer(){
+    public function flushBuffer()
+    {
         SeasLog::flushBuffer();
     }
 }
