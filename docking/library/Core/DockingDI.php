@@ -51,10 +51,10 @@ namespace Library\Core;
 use ArrayAccess;
 use Closure;
 
-class Docking_DI implements ArrayAccess {
+class DockingDI implements ArrayAccess {
 
     /**
-     * @var Docking_DI $instance 单例
+     * @var DockingDI $instance 单例
      */
     protected static $instance = NULL;
 
@@ -75,15 +75,13 @@ class Docking_DI implements ArrayAccess {
 
     /**
      * 获取DI单体实例
-     *
      * - 1、将进行service级的构造与初始化
      * - 2、也可以通过new创建，但不能实现service的共享
      */
     public static function one()
     {
         if (self::$instance == NULL) {
-            self::$instance = new Docking_DI();
-            self::$instance->Docking_DI();
+            self::$instance = new DockingDI();
         }
 
         return self::$instance;
@@ -159,12 +157,8 @@ class Docking_DI implements ArrayAccess {
         } else if (substr($name, 0, 3) == 'get') {
             $key = lcfirst(substr($name, 3));
             return $this->get($key, isset($arguments[0]) ? $arguments[0] : NULL);
-        } else {
         }
-
-        /*throw new PhalApi_Exception_InternalServerError(
-            T('Call to undefined method PhalApi_DI::{name}() .', array('name' => $name))
-        );*/
+        return true;
     }
 
     public function __set($name, $value)

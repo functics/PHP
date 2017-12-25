@@ -6,7 +6,9 @@
 
 namespace Library\Core;
 
-class Docking_Logger_SeasLog extends Docking_Logger {
+use SeasLog;
+
+class DockingLoggerSeasLog extends DockingLogger {
 
     /** 外部传参 **/
     protected $logFolder;

@@ -47,10 +47,10 @@ function errorHandle($errNo, $errStr, $errFile, $errLine)
 /**
  * 获取DI
  * 相当于PhalApi_DI::one()
- * @return \Library\Core\Docking_DI
+ * @return \Library\Core\DockingDI
  */
 function DI() {
-    return Library\Core\Docking_DI::one();
+    return Library\Core\DockingDI::one();
 }
 
 /**

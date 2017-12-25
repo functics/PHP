@@ -49,7 +49,7 @@
 namespace Library\Core;
 
 
-abstract class Docking_Logger
+abstract class DockingLogger
 {
     /**
      * @var int $logLevel 多个日记级别

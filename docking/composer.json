@@ -7,7 +7,8 @@
     "files" : [
       "config/config.php",
       "config/database.php",
-      "library/function.php"
+      "library/function.php",
+      "common/map.php"
     ],
     "psr-4" : {
       "App\\" : "app/",
