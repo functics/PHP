@@ -35,7 +35,7 @@ $item = array(
     'step'       => 0,
 );
 
-$item = (object)$item;
+//$item = (object)$item;
 
 DI()->docking->run($item);
 

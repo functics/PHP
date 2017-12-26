@@ -9,7 +9,7 @@
 namespace Library\Core;
 
 
-class DockingInterface
+class DockingProcessor
 {
 
 }

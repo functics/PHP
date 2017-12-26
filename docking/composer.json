@@ -8,6 +8,7 @@
       "config/config.php",
       "config/database.php",
       "library/function.php",
+      "library/utils.php",
       "common/map.php"
     ],
     "psr-4" : {

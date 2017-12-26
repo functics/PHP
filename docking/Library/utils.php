@@ -1,6 +1,13 @@
 <?php
+
+// 参数赋值
+$g_log_dir          = G_LOG_DIR;
+$g_cache_dir        = G_CACHE_DIR;
+$g_eshop_router_url = G_ESHOP_ROUTER_URL;
+$g_front_host       = G_FRONT_HOST;
+
 //日志
-if(empty($g_log_dir)) $g_log_dir = ROOT_DIR;
+if(empty($g_log_dir)) $g_log_dir = DOCKING_PATH;
 if(substr($g_log_dir, -1, 1) != '/') $g_log_dir .= '/';
 $g_log_dir_append = '';
 

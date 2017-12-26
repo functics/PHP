@@ -2,9 +2,12 @@
 
 namespace App\kangerxin2\model;
 
-use Library\Core\DockingInterface;
+use Library\Core\DockingModel;
 
-class OrderQuery extends DockingInterface
+class OrderQuery extends DockingModel
 {
-
+    public function getWord()
+    {
+        echo 'here is the model' . PHP_EOL;
+    }
 }
