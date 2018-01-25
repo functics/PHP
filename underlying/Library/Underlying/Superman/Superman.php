@@ -8,14 +8,15 @@ class Superman
 {
     protected $power;
 
-    public function __construct(SuperModuleInterface $modules)
+    public function __construct(SuperModule $modules)
     {
         // 初始化工厂
         $factory = new SuperModuleFactory;
 
         // 通过工厂提供的方法制造需要的模块
-        $this->power = $factory->makeModule('Fight', [9, 100]);
         foreach ($modules as $moduleName => $moduleOptions) {
+            echo $moduleName, $moduleOptions;
+            echo 111;
             $this->power[] = $factory->makeModule($moduleName, $moduleOptions);
         }
     }

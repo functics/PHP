@@ -2,12 +2,12 @@
 
 namespace Library\Underlying\Ability;
 
-use Library\Underlying\Superman\SuperModuleInterface;
+use Library\Underlying\Superman\SuperModule;
 
 /**
  * 终极炸弹 （就这么俗）
  */
-class UltraBomb implements SuperModuleInterface
+class UltraBomb implements SuperModule
 {
     public function activate(array $target)
     {

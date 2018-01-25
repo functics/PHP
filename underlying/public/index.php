@@ -1,16 +1,16 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use Library\Underlying\Ability AS Ability;
 use Library\Underlying\Superman AS Superman;
 use Library\Underlying\Container AS Container;
+
+require '../vendor/autoload.php';
 
 // 超能力模组
 $superModule = new Ability\XPower;
 // 初始化一个超人，并注入一个超能力模组依赖
 $superMan = new Superman\Superman($superModule);
-
+print_r($superModule);exit;
 // 创建一个容器（后面称作超级工厂）
 $container = new Container\Container;
 
@@ -28,10 +28,10 @@ $container->bind('xpower', function($container) {
 $container->bind('ultrabomb', function($container) {
     return new Ability\UltraBomb;
 });
-
+//print_r($container);exit;
 // ****************** 华丽丽的分割线 **********************
 // 开始启动生产
-$superman_1 = $container->make('superman', 'xpower');
-$superman_2 = $container->make('superman', 'ultrabomb');
-$superman_3 = $container->make('superman', 'xpower');
+$superman_1 = $container->make('superman', array('xpower'=> [9,100]));
+$superman_1 = $container->make('superman', array('ultrabomb'=> [9,100]));
+$superman_1 = $container->make('superman', array('fight'=> [9,100]));
 // ...随意添加

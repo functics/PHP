@@ -2,12 +2,12 @@
 
 namespace Library\Underlying\Ability;
 
-use Library\Underlying\Superman\SuperModuleInterface;
+use Library\Underlying\Superman\SuperModule;
 
 /**
  * X-超能量
  */
-class XPower implements SuperModuleInterface
+class XPower implements SuperModule
 {
     public function activate(array $target)
     {

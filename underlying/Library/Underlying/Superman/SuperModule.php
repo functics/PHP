@@ -2,7 +2,7 @@
 
 namespace Library\Underlying\Superman;
 
-interface SuperModuleInterface
+interface SuperModule
 {
     /**
      * 超能力激活方法
