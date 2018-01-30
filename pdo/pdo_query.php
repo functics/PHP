@@ -1,15 +1,15 @@
 <?php
-$dsn = "mysql:dbname=test;host=127.0.0.1;port=3306;";
+$dsn = "mysql: dbname=localhost;host=127.0.0.1;port=3306;";
 $usr = "root";
 $password = "root";
-try{
+try {
     $conn = new PDO($dsn, $usr, $password);
-}catch(PDOException $exception){
+} catch (PDOException $exception) {
     die("Connection failed".$exception->getMessage());
 }
 
 $sql = "SELECT * FROM `test`;";
-foreach ($conn->query($sql, PDO::FETCH_ASSOC) as $row){
+foreach ($conn->query($sql, PDO::FETCH_ASSOC) as $row) {
     print $row['id']."\t";
     print $row['username']."\n";
 }

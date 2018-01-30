@@ -9,6 +9,11 @@ class OrderQuery
 {
     public function __construct ()
     {
+
+        // 请求api  数据$data;
+
+
+
         echo 'inner controller' . PHP_EOL;
 //        $processor = new \App\kangerxin2\processor\OrderQuery();
         $processor = new processor();

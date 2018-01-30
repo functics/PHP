@@ -30,8 +30,8 @@ $item = array(
         'appsecret' => 'fb19a7198b20fa67ee463e56d75522ef'
     ),
     'last_time'  => '2017-08-05 10:32:03',
-    'is_disable' => 1,
-    'is_check'   => 0,
+    'is_disable' => 0,
+    'is_check'   => 1,
     'step'       => 0,
 );
 
