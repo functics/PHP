@@ -29,15 +29,16 @@ function ShellSort($arr) : array
         $gap = $gap * 3 + 1;
     }
 
-    for ($gap; $gap > 0; $gap = ceil($gap / 3)) {
+    for ($gap; $gap > 0; $gap = floor($gap / 3)) {
         for ($i = $gap; $i < $length; $i ++) {
             $temp = $arr[$i];
-            for ($j = $i - $gap; $j > 0 && $arr[$j] > $temp; $j -= $gap) {
+            for ($j = $i - $gap; $j >= 0 && $arr[$j] > $temp; $j -= $gap) {
                 $arr[$j + $gap] = $arr[$j];
             }
             $arr[$j + $gap] = $temp;
         }
     }
+
     return $arr;
 }
 

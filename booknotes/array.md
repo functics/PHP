@@ -35,7 +35,7 @@ Another interesting fact is that the size of the array $array is only 6. It is n
 
 ## 2.Associative array
 
-> **NOTICE THIS**
+**NOTICE THIS:**
 
 ```php
 $array      = [];
