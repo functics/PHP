@@ -13,7 +13,7 @@
 
 $arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
 
-function quickSort(array $arr, $left, $right) : array
+function quickSort(array &$arr, $left, $right) : array
 {
     $length = count($arr);
     $left   = !is_numeric($left) ? 0 : $left;
@@ -28,7 +28,7 @@ function quickSort(array $arr, $left, $right) : array
     return $arr;
 }
 
-function partition($arr, $left, $right) : int
+function partition(&$arr, $left, $right) : int
 {
     $pivot = $left;
     $index = $pivot + 1;
@@ -51,6 +51,4 @@ function swap(&$arr, $i, $j)
     $arr[$j] = $temp;
 }
 
-$arr = quickSort($arr, 0, 14);
-
-print_r($arr);
+print_r(quickSort($arr, 0, 14));
