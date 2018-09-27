@@ -10,23 +10,23 @@ $data = http_build_query($data);
 
 $opts = [
     'http' => [
-        'method'  => 'POST',
-        'header'  => '',
-        // 'header'  => "Accept: application/json, text/plain, */*" . "\r\n" . 
-                    //  "Accept-Encoding: gzip, deflate" . "\r\n" .
-                    //  "Accept-Language: zh-CN,zh;q=0.9" . "\r\n" .
-                    //  "Cache-Control: no-cache" . "\r\n" .
-                    //  "Connection: keep-alive" . "\r\n" .
-                    //  "Cookie: laravel_token=eyJpdiI6IkJlU3U0R1RUUFRoVEhEbEVKUFh0VVE9PSIsInZhbHVlIjoiVCtpNUtIeHZDT2w1aWFPeUNFdk8wTDFYaFdlVmFyXC9LdzhKcHpTYWZnS08xWTFsN0lzZitROGg4Q2VXRTVFWmU3YzkzY1JuQXpMZmNhTTQyYXpUeEpObWF3bkZ3eHl6MGE1SnZrK1BWemFFa3RnRUVMRjh1RnhsYlwvaExta2dcLzJXZ0JcL0I1WnBSRUtuV0NCWktWY21IazVQZ0k1c3V0anBIXC9CRVlwbjB4K1J6bWo4SGFxVmlaSm9oZ1pZRFh3bnNSRVlqYlhSckczUXA0S0FaaHJLbk5CM3lDTGZSSGcrQXIrRkJ3TkZXQXlSMERPWFBIdDlxTXZERmsxQzcyRnRXWW9ZMnJ0VDJZTW0rd1wvM2xJRW1vUXc9PSIsIm1hYyI6ImJhY2U3NWE3OTllMjg1MThjOTliYzk4OTdlODA1ZjcxYjA5MzM2MGFhOGQzNjAxYmQzMGU1ZmY4NDQ1YWViMDEifQ%3D%3D; XSRF-TOKEN=eyJpdiI6IlFDUlNQSGFBNnpkWkdmbXI1dkFVRlE9PSIsInZhbHVlIjoiVHJoZXAreThWQm85QkpNWkp1cENjamlqdG5TaUp2V0pqYkw2NEcrcHpuWXpsMlJUdDArRlwvWGFpRDRMckhJR1hYSVFrcUVJaWdPV2N0NldXUGhcL1Y2UT09IiwibWFjIjoiMGRlZDYwM2M4OGMwMzhmZDZkY2UyMTVmNzlhYzRjMDE5YTA3YTVmOTMyNzQxY2E2OTM4OWFiMjIxNzM5MjExYyJ9; _session=eyJpdiI6IkZEWGdYN3l3dEFsUDZnalFlbm1kcFE9PSIsInZhbHVlIjoibnp4MkRoS1Y4NlVEa1ZrbXp5VUViMzNpTG1paDc1WEtZWCtucmE1bnhET1wvRlwveGlYdWNjNUVZbjBpb21NTW1JXC94MUZXMWxKSXpuMEt0bDBXRXpDdVE9PSIsIm1hYyI6Ijk3Mzg2NzEzMjJmNDhhODAxNGU1ZTJhODQzNGRmY2YxMzRlYjY3YWEzNmM4M2YzYTFiYTIxZjQ4N2U2ZjYxNjMifQ%3D%3D" . "\r\n" .
-                    //  "Host: www.wdtcrmb.com" . "\r\n" .
-                    //  "Pragma: no-cache" . "\r\n" .
-                    //  "Referer: http://www.wdtcrmb.com/api/alter_password" . "\r\n" .
-                    //  "Content-Type: text/html; charset=UTF-8" . "\r\n" . // "Content-type: application/x-www-form-urlencoded" . "\r\n" .
-                    //  "Content-Length: " . strlen($data) . "\r\n" . 
-                    //  "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3486.0 Safari/537.36" . '\r\n' .
-                    //  "X-CSRF-TOKEN: qNIGhqnp6p30QOePcEVf8KrUXuDGJJBkpsscs04j" . '\r\n' .
-                    //  "X-Requested-With: XMLHttpRequest" . '\r\n' .
-                    //  "X-XSRF-TOKEN: eyJpdiI6IlFDUlNQSGFBNnpkWkdmbXI1dkFVRlE9PSIsInZhbHVlIjoiVHJoZXAreThWQm85QkpNWkp1cENjamlqdG5TaUp2V0pqYkw2NEcrcHpuWXpsMlJUdDArRlwvWGFpRDRMckhJR1hYSVFrcUVJaWdPV2N0NldXUGhcL1Y2UT09IiwibWFjIjoiMGRlZDYwM2M4OGMwMzhmZDZkY2UyMTVmNzlhYzRjMDE5YTA3YTVmOTMyNzQxY2E2OTM4OWFiMjIxNzM5MjExYyJ9" . '\r\n',
+        'method'  => 'GET',
+        // 'header'  => '',
+        'header'  => "Accept: application/json, text/plain, */*" . "\r\n" . 
+                     "Accept-Encoding: gzip, deflate" . "\r\n" .
+                     "Accept-Language: zh-CN,zh;q=0.9" . "\r\n" .
+                     "Cache-Control: no-cache" . "\r\n" .
+                     "Connection: keep-alive" . "\r\n" .
+                     "Cookie: laravel_token=eyJpdiI6IkFaVHAwWHE3OGtFK01UVHpvXC9QOTdBPT0iLCJ2YWx1ZSI6Imw5YTFmUEoyeUFNNVp3Vk96ODlmWDkzTUZxT1J3OG1xYWF3TjlkdEV2c0VJZ1ptUU9zYmFZeWx3aERldUZRNEdlcG83TjlybWxnV2dSTTNcL2s0clNuRTVKRERlNlRnYVBzQmN0VDc5eWs4SjZqeHNcL2t3SkpOTUxXSU14YjJ5UVpHNEV1cDBEMndMcTNFSjlRUmxIXC9KMXZMcmdmR2tvaGRXOGdLRDlTdzJxamo1Y0Q2UThVek1XOGExNTVITVRYR3NyRlkrM0NETHZDdFwvQ3FlSDhkTUhKbXBzdWtnMW5DTjJKV0lPTVJrSk8zNmFqWHdQUjg1aFZCbnoxNU9nRDh1Wnc2NVVJbjVFbWZLVmV3SWZqcTM2QT09IiwibWFjIjoiZDE2NmU0YmE5Nzg2OTcxM2EzNDVlNmM0NjUxNzM0YmY3OTk3ODllYTlhNzk4NGU1MTRmZWI1MTBmOGZlNmI2YSJ9; XSRF-TOKEN=eyJpdiI6ImFwUkZsUUhMZksxVmlCZGR4dlIxMFE9PSIsInZhbHVlIjoidlUraUE1SUE3WHBncG9yeHlyWFlxbVVISVdIQytmTHZQTXNKanVvQjRYVUh3ZHdqbWVTSkVDNWxBZkdzbGJZbCtsekw1R1FvZWZkZzI1Z2pQUUZRaXc9PSIsIm1hYyI6IjQzNWNjN2M0YzhhYWZhYjQ1NzMwMzc0MThiYzJmNTNjMWY4ZGZiZWU1ZTg4Yjc2MWQ1NGY0ZTEyMzcwNzUyOTUifQ%3D%3D; _session=eyJpdiI6Ikx3TitMdWp0T25PY1wvdU1YUldqTEV3PT0iLCJ2YWx1ZSI6Ik9NK2Y0cStFUWhJUVF4QWVIcVVjK1ZJalFoRDB4OWU0VnRHUXZpc28zdEp5SmtOYnY5YXlsaWxzbE8yV3lkYVhxSGxjd00ybmY4VkhTSFBoekxLQm9nPT0iLCJtYWMiOiIwYWJkZDEwN2QzMzQwNDFiOTA0ZDBiOWY0MzczYWQwZWFhMGIwNjk4N2Y0YjMxYTI5OWY5ODdhM2ZlODgwYzNhIn0%3D" . "\r\n" .
+                     "Host: www.wdtcrmb.com" . "\r\n" .
+                     "Pragma: no-cache" . "\r\n" .
+                     "Referer: http://www.wdtcrmb.com/api/alter_password" . "\r\n" .
+                     "Content-Type: text/html; charset=UTF-8" . "\r\n" . // "Content-type: application/x-www-form-urlencoded" . "\r\n" .
+                     "Content-Length: " . strlen($data) . "\r\n" . 
+                     "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3486.0 Safari/537.36" . '\r\n' .
+                     "X-CSRF-TOKEN: ZCyLbgjhRT1NtvDs1ryQybsGhyDy7bZmT0f92hI4" . '\r\n' .
+                     "X-Requested-With: XMLHttpRequest" . '\r\n' .
+                     "X-XSRF-TOKEN: eyJpdiI6ImFwUkZsUUhMZksxVmlCZGR4dlIxMFE9PSIsInZhbHVlIjoidlUraUE1SUE3WHBncG9yeHlyWFlxbVVISVdIQytmTHZQTXNKanVvQjRYVUh3ZHdqbWVTSkVDNWxBZkdzbGJZbCtsekw1R1FvZWZkZzI1Z2pQUUZRaXc9PSIsIm1hYyI6IjQzNWNjN2M0YzhhYWZhYjQ1NzMwMzc0MThiYzJmNTNjMWY4ZGZiZWU1ZTg4Yjc2MWQ1NGY0ZTEyMzcwNzUyOTUifQ==" . '\r\n',
         "content" => $data,
     ],
 ];
@@ -34,6 +34,5 @@ $opts = [
 $context = stream_context_create($opts);
 
 $html = file_get_contents('http://www.wdtcrmb.com/api/alter_password', false, $context);
-// $html = file_get_contents('http://www.wdtcrmb.com/api/alter_password', false, $context);
 
 print_r($html);
