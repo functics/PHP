@@ -4,11 +4,11 @@ $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
 // 绑定接收的套接流主机和端口,与客户端相对应;端口可以自定义，前提是没有被占用
 if (!socket_bind($socket, '127.0.0.1', 80)) {
-    echo 'server bind fail:' . socket_strerror(socket_last_error());
+    echo 'server bind fail : ' . socket_strerror(socket_last_error());
 }
 // 监听套节流
 if (!socket_listen($socket, 4)) {
-    echo 'server losten fail:' . socket_strerror(socket_last_error());
+    echo 'server losten fail : ' . socket_strerror(socket_last_error());
 }
 
 // 让服务器无限获取客户端传过来的信息
@@ -27,7 +27,7 @@ do {
             // 向 socket_accept 的套接流写入信息，也就是回馈信息给 socket_bind() 所绑定的主机客户端
             socket_write($acceptResource, $returnClient, strlen($returnClient)); // socket_write的作用是向socket_create的套接流写入信息，或者向socket_accept的套接流写入信息
         } else {
-            echo 'socket_read is fail';
+            echo 'socket_read is fail' . PHP_EOL;
         }
         // socket_close的作用是关闭socket_create()或者socket_accept()所建立的套接流
         socket_close($acceptResource);
