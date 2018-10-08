@@ -3,7 +3,7 @@
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
 // 绑定接收的套接流主机和端口,与客户端相对应;端口可以自定义，前提是没有被占用
-if (!socket_bind($socket, '127.0.0.1', 80)) {
+if (!socket_bind($socket, '127.0.0.1', 8088)) {
     echo 'server bind fail : ' . socket_strerror(socket_last_error());
 }
 // 监听套节流
@@ -20,9 +20,9 @@ do {
         // 读取客户端传过来的资源并且转化为字符串
         $string = socket_read($acceptResource, 1024); // socket_read的作用就是读出socket_accept()的资源并把它转化为字符串
         
-        echo 'server recieve is :' . $string . PHP_EOL; // PHP_EOL为php的换行预定义常量
+        echo 'server recieve is :' . $string . PHP_EOL;
 
-        if (!$string) {
+        if ($string) {
             $returnClient = 'server receive is : ' . $string . PHP_EOL;
             // 向 socket_accept 的套接流写入信息，也就是回馈信息给 socket_bind() 所绑定的主机客户端
             socket_write($acceptResource, $returnClient, strlen($returnClient)); // socket_write的作用是向socket_create的套接流写入信息，或者向socket_accept的套接流写入信息

@@ -10,7 +10,7 @@ socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => 1, 'usec' => 
 socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 6, 'usec' => 0));
 
 // 连接服务器的套接流，这一步就是使客户端与服务器端的套接流建立联系
-if (!socket_connect($socket, '127.0.0.1', 80)) {
+if (!socket_connect($socket, '127.0.0.1', 8088)) {
     echo 'connet fail message :' . socket_strerror(socket_last_error());
 } else {
     $message = 'This is a socket message';
