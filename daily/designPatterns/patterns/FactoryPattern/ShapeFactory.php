@@ -9,9 +9,9 @@ use Patterns\FactoryPattern\Square;
 
 class ShapeFactory
 {
-    public function getShape(string $type) : Shape
+    public function getShape(string $shape) : Shape
     {
-        switch ($type) {
+        switch ($shape) {
             case 'rectangle':
                 return new Rectangle();
                 break;
@@ -22,7 +22,7 @@ class ShapeFactory
                 return new Square();
                 break;
             default:
-                throw new Expection('Wrong type');
+                throw new Expection('Wrong shape');
         }
     }
 }
