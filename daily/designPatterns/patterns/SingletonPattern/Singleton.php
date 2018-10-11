@@ -12,7 +12,7 @@ class Singleton
     }
 
     // 私有化克隆方法
-    public function __clone()
+    private function __clone()
     {
 
     }
