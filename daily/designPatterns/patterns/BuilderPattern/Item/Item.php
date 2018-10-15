@@ -1,6 +1,6 @@
 <?php
 
-namespace Patterns\BuilderPattern;
+namespace Patterns\BuilderPattern\Item;
 
 interface Item
 {

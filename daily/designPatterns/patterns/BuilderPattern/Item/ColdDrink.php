@@ -7,10 +7,10 @@ use Patterns\BuilderPattern\Packing\Bottle;
 
 abstract class ColdDrink implements Item
 {
-    public function pack()
+    public function packing()
     {
         return new Bottle();
     }
 
-    public abstract function price();
+    abstract public function price();
 }

@@ -8,7 +8,7 @@ class ChickenBurger extends Burger
 {
     public function price() : float
     {
-        return 50.0;
+        return 50.5;
     }
 
     public function name()
