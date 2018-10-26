@@ -1,8 +1,11 @@
 <?php
 
-namespace DesignPatterns\Patterns\AbstractFactory;
+namespace Patterns\AbstractFactory;
 
-class HmtlText extends Text
+class HtmlText extends Text
 {
-    // 逻辑代码
+    public function __construct()
+    {
+        echo 'HtmlText' . PHP_EOL;
+    }
 }

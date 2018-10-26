@@ -1,8 +1,11 @@
 <?php
 
-namespace DesignPatterns\Patterns\AbstractFactory;
+namespace Patterns\AbstractFactory;
 
 class JsonText extends Text
 {
-    // 逻辑代码
+    public function __construct()
+    {
+        echo 'JsonText' . PHP_EOL;
+    }
 }

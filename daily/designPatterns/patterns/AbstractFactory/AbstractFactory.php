@@ -1,6 +1,6 @@
 <?php
 
-namespace DesignPatterns\Patterns\AbstractFactory;
+namespace Patterns\AbstractFactory;
 
 abstract class AbstractFactory
 {

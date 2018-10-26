@@ -1,10 +1,10 @@
 <?php
 
-namespace DesignPatterns\Patterns\AbstractFactory;
+namespace Patterns\AbstractFactory;
 
 class HtmlFactory extends AbstractFactory
 {
-    public function createText(string $context) : Text
+    public function createText(string $content) : Text
     {
         return new HtmlText($content);
     }

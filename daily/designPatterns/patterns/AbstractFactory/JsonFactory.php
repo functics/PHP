@@ -1,11 +1,11 @@
 <?php
 
-namespace DesignPatterns\Patterns\AbstractFactory;
+namespace Patterns\AbstractFactory;
 
 class JsonFactory extends AbstractFactory
 {
     public function createText(string $context) : Text
     {
-        return new JsonText($content);
+        return new JsonText($context);
     }
 }

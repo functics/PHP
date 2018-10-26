@@ -1,22 +1,8 @@
 <?php
 
-use Patterns\FactoryPattern\Run as FactoryRun;                 // 工厂模式
-use Patterns\SingletonPattern\Run as SingletonRun;             // 单例模式
-use Patterns\AbstractFactoryPattern\Run as AbstractFactoryRun; // 抽象工厂模式
-use Patterns\BuilderPattern\Run as BuilderRun;                 // 建造者模式
-
-// 工厂模式
-// $factoryRun = new FactoryRun();
-// $factoryRun::index();
+use Patterns\AbstractFactory\Test as AbstractFactoryTest; // 抽象工厂模式
 
 // 抽象工厂模式
-// $abstractFactoryRun = new AbstractFactoryRun();
-// $abstractFactoryRun::index();
-
-// 单例模式
-// $singleton = new SingletonRun();
-// $singleton->index();
-
-// 建造者模式
-$builder = new BuilderRun();
-$builder->index();
+$abstractFactoryTest = new AbstractFactoryTest();
+$abstractFactoryTest->testCanCreateHtmlText();
+$abstractFactoryTest->testCanCreateJsonText();
